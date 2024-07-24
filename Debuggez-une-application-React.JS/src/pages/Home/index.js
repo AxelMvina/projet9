@@ -15,8 +15,6 @@ import { useData } from "../../contexts/DataContext";
 const Page = () => {
   const { lastEvent } = useData();
 
-  console.log('Dernier événement dans Page :', lastEvent); // Debugging line
-
   return (
     <>
       <header>
