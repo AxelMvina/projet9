@@ -8,10 +8,10 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
 
-  // Sort the events in ascending order by date
-  const byDateAsc = data?.focus.sort((evtA, evtB) =>
+  // Trier les événements de la date la plus ancienne à la plus récente
+  const byDateAsc = data?.focus?.length ? [...data.focus].sort((evtA, evtB) =>
     new Date(evtA.date) > new Date(evtB.date) ? 1 : -1
-  );
+  ) : [];
 
   useEffect(() => {
     const interval = setInterval(() => {
