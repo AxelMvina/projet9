@@ -33,8 +33,12 @@ export const DataProvider = ({ children }) => {
       const fetchedData = await api.loadData();
       setData(fetchedData);
       if (fetchedData.events && fetchedData.events.length > 0) {
-        setLastEvent(fetchedData.events[fetchedData.events.length - 1]); // le dernier événement est le dernier élément du tableau
-        console.log("Dernier événement défini :", fetchedData.events[fetchedData.events.length - 1]); // Debugging line
+        const mostRecentEvent = fetchedData.events.reduce((latest, event) => {
+          const eventDate = new Date(event.date);
+          return eventDate > new Date(latest.date) ? event : latest;
+        }, fetchedData.events[0]);
+        setLastEvent(mostRecentEvent); // le dernier événement par date
+        console.log("Dernier événement défini :", mostRecentEvent); // Debugging line
       }
     } catch (err) {
       console.error("Erreur lors de la récupération des données :", err); // Debugging line
