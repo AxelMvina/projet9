@@ -125,6 +125,7 @@ const Page = () => {
               date={new Date(lastEvent.date)}
               small
               label="boom"
+              data-testid="last-event-card"
             />
           ) : (
             <p>Aucune prestation disponible pour le moment.</p>
